@@ -1,0 +1,38 @@
+### Initiate Google OAuth2 Login
+GET http://localhost:8888/oauth2/gmail/login
+Accept: application/json
+
+### Google OAuth2 Callback (For documentation only - called by Google)
+GET http://localhost:8888/oauth2/callback
+    ?code={{auth_code}}
+    &state={{state}}
+Accept: application/json
+
+### Initiate Microsoft OAuth2 Login
+GET http://localhost:8888/oauth2/microsoft/login
+Accept: application/json
+
+### Microsoft OAuth2 Callback (For documentation only - called by Microsoft)
+GET http://localhost:8888/oauth2/callback/microsoft
+    ?code={{auth_code}}
+    &state={{state}}
+Accept: application/json
+
+### Get User Profile (Google)
+GET http://localhost:8888/api/user/profile
+Authorization: Bearer {{auth_token}}
+Accept: application/json
+
+### Get User Profile (Microsoft)
+GET http://localhost:8888/api/user/profile
+Authorization: Bearer {{auth_token}}
+Accept: application/json
+
+### Environment Variables (http-client.env.json)
+# {
+#     "dev": {
+#         "auth_code": "placeholder-auth-code",
+#         "state": "placeholder-state",
+#         "auth_token": "your-access-token"
+#     }
+# }

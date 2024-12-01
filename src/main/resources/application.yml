@@ -1,0 +1,107 @@
+server:
+  port: 8888
+  error:
+    include-message: always
+    include-binding-errors: always
+    include-stacktrace: never
+    include-exception: false
+
+azure:
+  clientId: ${AZURE_CLIENT_ID}
+  clientSecret: ${AZURE_CLIENT_SECRET}
+  tenantId: ${AZURE_TENANT_ID}
+
+spring:
+  oauth2:
+    client:
+      registration:
+        google:
+          client-id: ${GOOGLE_CLIENT_ID}
+          client-secret: ${GOOGLE_CLIENT_SECRET}
+          redirect-uri: http://localhost:8888/oauth2/callback/google
+          authorization-grant-type: authorization_code
+          scope:
+            - email
+            - https://www.googleapis.com/auth/gmail.readonly
+            - https://www.googleapis.com/auth/gmail.send
+        microsoft:
+          client-id: ${AZURE_CLIENT_ID}
+          client-secret: ${AZURE_CLIENT_SECRET}
+          redirect-uri: http://localhost:8888/oauth2/callback/microsoft
+          authorization-grant-type: authorization_code
+          scope:
+            - https://graph.microsoft.com/Mail.Read
+            - https://graph.microsoft.com/Mail.Send
+            - https://graph.microsoft.com/User.Read
+      provider:
+        google:
+          authorization-uri: https://accounts.google.com/o/oauth2/auth
+          token-uri: https://oauth2.googleapis.com/token
+          user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
+          user-name-attribute: sub
+        microsoft:
+          authorization-uri: https://login.microsoftonline.com/${AZURE_TENANT_ID}/oauth2/v2.0/authorize
+          token-uri: https://login.microsoftonline.com/${AZURE_TENANT_ID}/oauth2/v2.0/token
+          user-info-uri: https://graph.microsoft.com/oidc/userinfo
+          user-name-attribute: sub
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+            redirect-uri: http://localhost:8888/oauth2/callback/google
+            authorization-grant-type: authorization_code
+            scope:
+              - email
+              - https://www.googleapis.com/auth/gmail.readonly
+              - https://www.googleapis.com/auth/gmail.send
+          microsoft:
+            client-id: ${AZURE_CLIENT_ID}
+            client-secret: ${AZURE_CLIENT_SECRET}
+            redirect-uri: http://localhost:8888/oauth2/callback/microsoft
+            authorization-grant-type: authorization_code
+            scope:
+              - https://graph.microsoft.com/Mail.Read
+              - https://graph.microsoft.com/Mail.Send
+              - https://graph.microsoft.com/User.Read
+        provider:
+          google:
+            authorization-uri: https://accounts.google.com/o/oauth2/auth
+            token-uri: https://oauth2.googleapis.com/token
+            user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
+            user-name-attribute: sub
+          microsoft:
+            authorization-uri: https://login.microsoftonline.com/${AZURE_TENANT_ID}/oauth2/v2.0/authorize
+            token-uri: https://login.microsoftonline.com/${AZURE_TENANT_ID}/oauth2/v2.0/token
+            user-info-uri: https://graph.microsoft.com/oidc/userinfo
+            user-name-attribute: sub
+  datasource:
+    url: jdbc:h2:mem:emaildb
+    username: sa
+    password: 
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+logging:
+  level:
+    root: INFO
+    com.example.emailnotification: DEBUG
+    org.springframework.security: INFO
+    org.springframework.security.oauth2: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/application.log
+    max-size: 10MB
+    max-history: 7

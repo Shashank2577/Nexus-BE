@@ -1,0 +1,62 @@
+### Get new emails (Protected endpoint)
+GET http://localhost:8080/api/emails/new
+Authorization: Bearer {{auth_token}}
+
+HTTP/1.1 500  - Internal Server Error
+x-content-type-options: nosniff
+x-xss-protection: 1; mode=block
+cache-control: no-cache, no-store, max-age=0, must-revalidate
+pragma: no-cache
+expires: 0
+x-frame-options: DENY
+content-type: application/json
+transfer-encoding: chunked
+date: Fri, 29 Nov 2024 19:56:22 GMT
+connection: close
+###
+POST http://localhost:8080/api/emails/watch/start
+Authorization: Bearer {{auth_token}}
+
+HTTP/1.1 200  - OK
+x-content-type-options: nosniff
+x-xss-protection: 1; mode=block
+cache-control: no-cache, no-store, max-age=0, must-revalidate
+pragma: no-cache
+expires: 0
+x-frame-options: DENY
+content-length: 0
+date: Fri, 29 Nov 2024 19:36:36 GMT
+connection: close
+###
+POST http://localhost:8080/api/emails/watch/stop
+Authorization: Bearer {{auth_token}}
+
+HTTP/1.1 200  - OK
+x-content-type-options: nosniff
+x-xss-protection: 1; mode=block
+cache-control: no-cache, no-store, max-age=0, must-revalidate
+pragma: no-cache
+expires: 0
+x-frame-options: DENY
+content-length: 0
+date: Fri, 29 Nov 2024 19:56:13 GMT
+connection: close
+###
+GET http://localhost:8080/api/emails/gmail
+Authorization: Bearer {{auth_token}}
+
+HTTP/1.1 404  - Not Found
+vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+x-content-type-options: nosniff
+x-xss-protection: 1; mode=block
+cache-control: no-cache, no-store, max-age=0, must-revalidate
+pragma: no-cache
+expires: 0
+x-frame-options: DENY
+content-type: application/json
+transfer-encoding: chunked
+date: Fri, 29 Nov 2024 19:56:39 GMT
+connection: close
+###
+GET http://localhost:8080/api/emails/microsoft
+Authorization: Bearer {{auth_token}}
