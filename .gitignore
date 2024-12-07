@@ -43,6 +43,7 @@ application-local.properties
 ### Node.js ###
 # Dependencies
 node_modules/
+/frontend/node_modules/
 /.pnp
 .pnp.js
 
@@ -69,6 +70,8 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+/frontend/.env
+/frontend/.nvmrc
 
 # Vercel
 .vercel
@@ -92,3 +95,6 @@ Thumbs.db
 *.zip
 *.tar.gz
 *.rar
+/frontend/dist/
+/frontend/build/
+/frontend/package-lock.json
